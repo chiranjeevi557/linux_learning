@@ -1,0 +1,23 @@
+Linux Booting Process:
+1.load BIOS/UEFI firmware(small program) from the memory
+Yes, BIOS is a machine-level program.
+UEFI is also a machine-level program (but more advanced).
+2.It executes POST(power on self test)(hardware self-check process)
+It Checks CPU, RAM, Disk, and Keyboard are working properly before trying to boot the operating system.
+✅ If POST succeeds ➔ the system starts booting.
+❌ If POST fails ➔ the system gives error codes, beeps, or shows error screens.
+3.Choose a booting device to boot the OS.
+Booting device = the place where the operating system is stored.
+4.BIOS/UEFI runs GRUB(Grand Unified Bootloader) executes the kernel
+boot/grub/grub.cfg
+vmlinux(kernel)
+systemd - service
+After the kernel is ready, we now switch to the user space. The kernel starts up systemd as the first user-space process, which manages the processes and services, probes all remaining hardware, mounts filesystems, and runs a desktop environment. 
+.bashrc is a shell script that runs every time you open a new Bash terminal (non-login shell).
+It sets up your terminal environment
+
+Boot Phase	Commands to Know
+BIOS/UEFI	(hardware level, no Linux commands)
+GRUB (bootloader)	grub-mkconfig, grub-install
+Kernel & Initramfs	dmesg, update-initramfs
+Systemd (User Space)	systemctl, journalctl, systemd-analyze
